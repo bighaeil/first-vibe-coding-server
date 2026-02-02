@@ -1,0 +1,15 @@
+package com.example.board.domain.post.repository;
+
+import com.example.board.domain.post.entity.Post;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface PostRepository extends JpaRepository<Post, Long> {
+
+    Page<Post> findByDeletedFalseOrderByCreatedAtDesc(Pageable pageable);
+
+    Optional<Post> findByIdAndDeletedFalse(Long id);
+}
